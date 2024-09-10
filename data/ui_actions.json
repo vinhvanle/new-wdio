@@ -1,0 +1,5 @@
+{
+  "save": "sysverb_insert_and_stay",
+  "new": "sysverb_new",
+  "resolve": "resolve_incident"
+}
