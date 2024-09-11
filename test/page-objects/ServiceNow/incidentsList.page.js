@@ -1,4 +1,5 @@
 import Page from '../page';
+import UIAction from '../../../data/ui_actions.json' assert { type: 'json' };
 
 class IncidentListPage extends Page {
   constructor() {
@@ -30,7 +31,15 @@ class IncidentListPage extends Page {
    * @returns {WebdriverIO.Element}
    */
   async getUIAction(UIActionName) {
-    return this[UIActionName];
+    console.log(
+      `>>>> UIAction object: ${JSON.stringify(await this[UIActionName])}`
+    );
+
+    const btn = await this[UIActionName];
+
+    await btn.click();
+
+    // await this.click(await this[UIActionName]);
   }
 }
 

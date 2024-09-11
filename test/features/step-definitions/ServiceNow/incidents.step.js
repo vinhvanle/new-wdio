@@ -92,8 +92,11 @@ When(
     );
     try {
       UIAction = UIAction.toLowerCase();
-      const btn = await incidentsListPage.getUIAction(UIAction);
-      await incidentsListPage.click(btn);
+      // const btn = $(`button[id='sysverb_new']`);
+      // console.log(`>>>> btn object: ${JSON.stringify(btn)}`);
+
+      // await incidentsListPage.click(btn);
+      await incidentsListPage.getUIAction(UIAction);
     } catch (err) {
       err.message = `Something went wrong when clicking UI Action: ${UIAction}, ${err.message}`;
       throw err;
