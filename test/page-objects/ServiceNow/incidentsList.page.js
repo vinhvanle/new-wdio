@@ -28,16 +28,10 @@ class IncidentListPage extends Page {
   /**
    *
    * @param {string} UIActionName
-   * @returns {WebdriverIO.Element}
+   *
    */
   async getUIAction(UIActionName) {
-    console.log(
-      `>>>> UIAction object: ${JSON.stringify(await this[UIActionName])}`
-    );
-
-    const btn = await this[UIActionName];
-
-    await btn.click();
+    await this.click(await this.new);
 
     // await this.click(await this[UIActionName]);
   }

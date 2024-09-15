@@ -15,6 +15,7 @@
   },
   "scripts": {
     "wdio": "wdio run ./wdio.conf.js",
-    "sn:demo": "export HEADLESS=N && export DEBUG=N && npx wdio config/wdio.sn.conf.js"
+    "sn:demo:m": "export HEADLESS=N && export DEBUG=N && npx wdio config/wdio.sn.conf.js",
+    "sn:demo:w": "set HEADLESS=N && set DEBUG=N && npx wdio config/wdio.sn.conf.js"
   }
 }

@@ -15,9 +15,9 @@ export default class Page {
    */
   async click(ele) {
     await ele.waitForClickable({ timeout: 30000, interval: 500 });
-    if (!ele.elementId) {
-      throw Error(ele.error.message);
-    }
+    // if (!ele.elementId) {
+    //   throw Error(ele.error.message);
+    // }
     await ele.click();
   }
 

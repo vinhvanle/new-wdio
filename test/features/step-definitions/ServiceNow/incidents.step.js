@@ -6,6 +6,7 @@ import LoginPage from '../../../page-objects/ServiceNow/login.page';
 import platformLandingPage from '../../../page-objects/ServiceNow/platformLanding.page';
 
 import constants from '../../../../data/constants.json' assert { type: 'json' };
+import ui_actions from '../../../../data/ui_actions.json' assert { type: 'json' };
 import incidentsListPage from '../../../page-objects/ServiceNow/incidentsList.page';
 
 Given(/^As a (.*) user, I login to ServiceNow$/, async function (userRole) {
@@ -79,26 +80,30 @@ When(
   /^I click (.*) UI Action$/,
   /**
    *
-   * @param {string} UIAction
+   * @param {string} UIActionName
    */
-  async function (UIAction) {
-    if (!UIAction) {
-      throw Error(`Given UIAction: ${UIAction} is invalid`);
+  async function (UIActionName) {
+    if (!UIActionName) {
+      throw Error(`Given UIAction: ${UIActionName} is invalid`);
     }
     reporter.addStep(
       this.testID,
       'info',
-      `Starting to click ${UIAction} UI Action`
+      `Starting to click ${UIActionName} UI Action`
     );
     try {
-      UIAction = UIAction.toLowerCase();
-      // const btn = $(`button[id='sysverb_new']`);
-      // console.log(`>>>> btn object: ${JSON.stringify(btn)}`);
+      UIActionName = UIActionName.toLowerCase();
 
-      // await incidentsListPage.click(btn);
-      await incidentsListPage.getUIAction(UIAction);
+      //switch to main screen iframe
+      const iframe = await $('#gsft_main');
+      await browser.switchToFrame(iframe);
+
+      // click UIAction
+      const btn = await $(`button[id='${ui_actions[UIActionName]}']`);
+      await btn.click();
+      await browser.pause(3000);
     } catch (err) {
-      err.message = `Something went wrong when clicking UI Action: ${UIAction}, ${err.message}`;
+      err.message = `Something went wrong when clicking UI Action: ${UIActionName}, ${err.message}`;
       throw err;
     }
   }
